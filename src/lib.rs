@@ -1,5 +1,3 @@
-pub mod cli;
-
 pub fn truncate(arg: String, matches: u8) -> String {
     match arg.rmatch_indices('.').nth(matches as usize) {
         Some(index) => {

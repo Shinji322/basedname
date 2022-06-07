@@ -1,6 +1,10 @@
 use std::env::args;
 use std::process::exit;
-mod lib;
+pub mod lib;
+pub mod cli;
+use lib::truncate;
+use cli::Args;
+use clap::Parser;
 
 pub fn run(args: Args) -> Result<String, Box<dyn std::error::Error>> {
     Ok(truncate(args.query, args.matches))
@@ -9,9 +13,9 @@ pub fn run(args: Args) -> Result<String, Box<dyn std::error::Error>> {
 fn main() {
     let argc = args().skip(1).count();
     if argc == 0 {
-        match load_stdin() {
+        match Args::stdin() {
             Ok(stdin) => {
-                println!("{}", run(Args::new(stdin, 1)).unwrap());
+                println!("{}", run(stdin).unwrap());
                 exit(0);
             },
             Err(e) => {
@@ -21,7 +25,7 @@ fn main() {
         }
     } else if argc == 1 {
         let arg = args().skip(1).collect();
-        match run(Args::new(arg, 1)) {
+        match run(Args::new(arg, 0)) {
             Ok(val) => {
                 println!("{}", val);
                 exit(0);
