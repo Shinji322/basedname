@@ -4,7 +4,6 @@ pub mod lib;
 pub mod cli;
 use lib::truncate;
 use cli::Args;
-use clap::Parser;
 
 pub fn run(args: Args) -> Result<String, Box<dyn std::error::Error>> {
     Ok(truncate(args.query, args.matches))
@@ -38,7 +37,7 @@ fn main() {
     }
 
     // Otherwise, the code is running with multiple arguments and that should be handled by clap
-    let args = Args::parse();
+    let args = Args::arg_parse();
     match run(args) {
         Ok(val) => {
             println!("{}", val);
