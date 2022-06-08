@@ -19,7 +19,7 @@ impl Args {
         let mut buffer = String::new();
         let stdin = stdin();
         stdin.read_line(&mut buffer)?;
-        Ok(Args::new(buffer, 0))
+        Ok(Args::new(buffer, 1))
     }
     // This should be simply called Args::parse()
     // However, the compiler is unsure if it's a recursive function or a derived function
