@@ -20,7 +20,7 @@ As with most rust projects, it's a simple:
 cargo build --release
 ```
 
-You may also use the makefile:
+You may also use the `Makefile`:
 ```bash
 make             # just builds it
 make install     # installs it to ~/.local/bin
