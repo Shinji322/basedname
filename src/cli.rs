@@ -9,7 +9,7 @@ pub struct Args {
     #[clap(short)]
     pub query: String, // Simple query
     #[clap(short, default_value_t = 0)]
-    pub matches: u8 // [0..query.len()]
+    pub matches: u8 // [1..query.len()]
 }
 impl Args {
     pub fn new(query: String, matches: u8) -> Self {
